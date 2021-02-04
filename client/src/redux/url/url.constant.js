@@ -1,0 +1,6 @@
+const URL_CONSTANT = {
+    REDIRECT_TO: "REDIRECT_TO",
+    RESET_REDIRECT: "RESET_REDIRECT"
+}
+
+export default URL_CONSTANT

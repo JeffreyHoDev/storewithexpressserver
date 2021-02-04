@@ -1,0 +1,49 @@
+.App {
+
+  min-height: 100vh;
+  min-width: 95vw;
+  position: relative;
+
+  &-content {
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    grid-template-rows: 1fr 7fr;    
+  }
+
+}
+
+.main {
+  grid-row: 2/-1;
+  grid-column: 2/-1;
+  min-height: max-content;
+}
+
+.sidebar {
+  grid-column: 1/2;
+  grid-row: 1/ -1;
+}
+
+.topbar {
+  grid-row: 1/2;
+  
+}
+
+@media only screen and (max-width: 800px) {
+  .App {
+
+    min-height: 100vh;
+    min-width: 95vw;
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+    }
+  
+  }
+
+  .sidebar_small_screen {
+    display: none;
+  }
+
+  
+}

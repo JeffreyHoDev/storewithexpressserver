@@ -1,0 +1,117 @@
+.request_item {
+
+    &_page {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-left: 1rem;
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+
+    &_others {
+        display: flex;
+        column-gap: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    &_projectContainer {
+        display: flex;
+        column-gap: 0.8rem;
+    }
+
+    &_collectiondateContainer {
+        display: flex;
+        column-gap: 0.8rem;
+    }
+}
+
+.request_content h2 {
+    margin-bottom: 2rem;
+    text-decoration: underline;
+    color: rgb(182, 182, 182);
+}
+
+.pagination-utilities {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.page-item {
+    cursor: pointer;
+    &:hover {
+        color: grey;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .request_item {
+        &_others {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .pagination-utilities {
+        display: flex;
+        font-size: 0.6rem;
+        justify-content: space-between;
+    }
+
+    .page-item {
+        margin: .3rem .5rem;
+    }
+
+    .request_content h2 {
+        font-size: 0.9rem;
+    }
+
+    .request_content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-control-container {
+        display: none;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
+
+    .page-item {
+        font-size: 0.9rem;
+    }
+
+    .request_item_page {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-left: 1rem;
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    .request-item-table {
+        max-width: 80%
+    }
+
+    .request-item-table tr td {
+        font-size: .6rem;
+    }
+
+    .request-item-table tr th {
+        font-size: .6rem;
+    }
+
+    .btn-small {
+        font-size: .6rem;
+        padding: 0;
+    } 
+}

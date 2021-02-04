@@ -1,0 +1,19 @@
+.loginpage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(204, 204, 204);
+    padding: 4rem 2rem;
+    
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.demo-message {
+    color: green;
+    font-weight: 700;
+}

@@ -1,0 +1,36 @@
+.fulfill-page {
+    font-size: medium;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+.fulfill-title {
+    margin-bottom: 1rem;
+    color: black;
+}
+
+.fulfill_others {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    color: black;
+
+    & label {
+        text-decoration: underline;
+        margin-bottom: .8rem;
+        font-weight: 500;
+    }
+
+    & h5 {
+        margin-bottom: .9rem;
+    }
+}
+
+.action-container {
+    display: flex;
+    column-gap: 1.2rem;
+
+    & button {
+        width: max-content;
+        margin-bottom: .6rem;
+    }
+}

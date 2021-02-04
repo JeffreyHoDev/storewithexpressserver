@@ -1,0 +1,23 @@
+.user_management {
+
+    &_page {
+        margin-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    &_title {
+        margin: 1rem .5rem;
+    }
+}
+
+.addUser_btn {
+    margin: 1rem .5rem
+}
+
+@media only screen and (max-width: 500px) {
+
+    .delete-btn {
+        padding: 0.16rem 0.16rem
+    }
+
+}

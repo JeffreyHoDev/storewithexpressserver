@@ -1,0 +1,13 @@
+.pieChart-title {
+    display: flex;
+    justify-content: center;
+    color: rgb(175, 175, 175);
+}
+
+@media only screen and (max-width: 800px) {
+
+    .pieChart-title {
+        font-size: 1rem;
+    }
+    
+}
