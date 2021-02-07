@@ -49,7 +49,7 @@ const HomePage = ({ fetch_pie, fetch_line, fetchItem, isFetching, storeItem }) =
                                 <label htmlFor="pie_enddate">End Date: </label>
                                 <input type="date" name="pie_enddate" onChange={(e) => piehandleEnd(e.target.value)}></input>
                             </div>
-                            <Button variant="info" className="search-btn" onClick={() => fetch_pie(pieStartDate, pieEndDate)}>Search</Button>
+                            <Button variant="info" size="sm" className="search-btn" onClick={() => fetch_pie(pieStartDate, pieEndDate)}>Search</Button>
                         </div>
                         <div>
                             <PieChart/>
