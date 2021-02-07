@@ -63,7 +63,7 @@ export const UPDATE_SINGLEITEM_FAILED = (error) => ({
 export const ADD_NEW_ITEM_ASYNC = (dataObj) => {
     return dispatch => {
         dispatch(ADD_NEW_ITEM_START())
-        fetch('http://localhost:50000/add_new_item', {
+        fetch('/add_new_item', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -89,7 +89,7 @@ export const ADD_NEW_ITEM_ASYNC = (dataObj) => {
 export const FETCH_ITEM_ASYNC = () => {
     return dispatch => {
         dispatch(FETCH_ITEM_START())
-        fetch('http://localhost:50000/fetch_store_items', {
+        fetch('/fetch_store_items', {
             method: 'POST',
             headers: {
                 'Content-Type': "application/json"
@@ -106,7 +106,7 @@ export const FETCH_ITEM_ASYNC = () => {
 export const FETCH_SINGLEITEM_ASYNC = (item_id) => {
     return dispatch => {
         dispatch(FETCH_SINGLEITEM_START())
-        fetch('http://localhost:50000/fetch_single_item', {
+        fetch('/fetch_single_item', {
             method: 'POST',
             headers: {
                 'Content-Type': "application/json"
@@ -126,7 +126,7 @@ export const FETCH_SINGLEITEM_ASYNC = (item_id) => {
 export const UPDATE_SINGLEITEM_ASYNC = (dataObj) => {
     return dispatch => {
         dispatch(UPDATE_SINGLEITEM_START())
-        fetch('http://localhost:50000/update_single_item', {
+        fetch('/update_single_item', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
