@@ -173,7 +173,7 @@ export const FETCH_SINGLEUSER_ASYNC = (id) => {
 export const LOGIN_USER_ASYNC = (data) => {
     return dispatch => {
         dispatch(LOGIN_USER_START())
-        fetch('http://localhost:50000/login_user', {
+        fetch('/login_user', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json" 
@@ -183,7 +183,7 @@ export const LOGIN_USER_ASYNC = (data) => {
         .then(response => response.json())
         .then(result => {
             dispatch(LOGIN_USER_SUCCESS(result))
-            dispatch(RedirectTo('/'))
+            dispatch(RedirectTo('/home'))
             dispatch(ResetRedirect())
         })
         .catch(err => dispatch(LOGIN_USER_FAILED(err)))

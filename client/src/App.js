@@ -50,7 +50,7 @@ const App = ({ isLoggedIn }) => {
           <Sidebar className='sidebar-main'/>
           <Topbar className='topbar-main'/>
           <div className='main'>
-              <Route exact path='/'>
+              <Route exact path='/home'>
                 <HomePage />
               </Route>
               <Route path='/request_item'>
