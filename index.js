@@ -194,6 +194,19 @@ app.post('/fulfill_request', (req,res) => {
     const { request_id, itemObj } = req.body
     knex('request_list').where('request_id', request_id).update('status', 'Fulfilled')
     .then(result => {
+        knex('request_list').select('item_details').where('request_id', request_id)
+        .then(data => {
+            const processedData = JSON.parse(data[0]["item_details"])
+            processedData.map(item => {
+                knex('items_management').select().where('item_id', item.item_id)
+                .then(data => {
+                    const oldQuantity = parseInt(data[0]['available_quantity'])
+                    const newQuantity = oldQuantity - parseInt(item.quantity)
+                    knex('items_management').where('item_id', item.item_id).update('available_quantity', newQuantity)
+                    .then(result => console.log(result))
+                })
+            })
+        })
         if(result === 1){
             const fieldsToInsert = itemObj.map(item => ({
                 "item_name": item.name,
@@ -201,7 +214,6 @@ app.post('/fulfill_request', (req,res) => {
                 "fulfilled_date": new Date(),
                 "outbound_quantity": item.quantity
             }))
-        
             knex('item_analysis').insert(fieldsToInsert)
             .then(result => res.json(result))
             .catch(err => res.json(err))
