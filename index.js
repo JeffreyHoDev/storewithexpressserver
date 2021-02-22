@@ -65,7 +65,6 @@ app.post('/login_user', (req,res) => {
     .then(result_fromDB => {
         if(result_fromDB.length !== 0){
             bcrypt.compare(password, result_fromDB[0].password, function(err, result) {
-                console.log(result)
                 if(result){
                     const responseData = {
                         "name": result_fromDB[0]["name"],
