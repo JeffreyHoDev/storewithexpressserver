@@ -182,9 +182,14 @@ export const LOGIN_USER_ASYNC = (data) => {
         })
         .then(response => response.json())
         .then(result => {
-            dispatch(LOGIN_USER_SUCCESS(result))
-            dispatch(RedirectTo('/home'))
-            dispatch(ResetRedirect())
+            if(result !== "Wrong Credentials"){
+                dispatch(LOGIN_USER_SUCCESS(result))
+                dispatch(RedirectTo('/home'))
+                dispatch(ResetRedirect())
+            }
+            else {
+                dispatch(LOGIN_USER_FAILED("Error: Wrong Credentials"))
+            }
         })
         .catch(err => dispatch(LOGIN_USER_FAILED(err)))
     }
