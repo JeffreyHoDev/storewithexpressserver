@@ -7,21 +7,22 @@ import './pdf.scss'
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
-    backgroundColor: '#E4E4E4'
+    backgroundColor: '#E4E4E4',
+    justifyContent: "space-around"
   },
   section: {
-    margin: 10,
-    padding: 10
+    margin: 6,
+    padding: 10,
+    flexGrow: 1
   },
   image: {
-    width: '50%',
-    padding: 10,
+    width: '30%',
+    padding: 8,
     alignSelf: "center"
   },
   footer: {
     bottom: 0,
-    textAlign: "center",
-    position: "absolute"
+    textAlign: "center"
   }
 });
 
