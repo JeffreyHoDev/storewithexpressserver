@@ -20,8 +20,6 @@ import StoreListPage from './page/storelistpage/storelist.page';
 import UserManagementPage from './page/usermanagementpage/usermanagement.page'
 // End importing page components
 
-import MyDocument from './utilities/pdf'
-
 // Start Importing React Router
 import {
   BrowserRouter as Router,
@@ -38,7 +36,6 @@ const App = ({ isLoggedIn }) => {
   return (
     <Router>
       <div className="App">
-      <MyDocument/>
       <AddItem />
       <AddUser />
       <DeleteUser />
@@ -53,7 +50,7 @@ const App = ({ isLoggedIn }) => {
           <Sidebar className='sidebar-main'/>
           <Topbar className='topbar-main'/>
           <div className='main'>
-              <Route exact path='/'>
+              <Route exact path='/home'>
                 <HomePage />
               </Route>
               <Route path='/request_item'>

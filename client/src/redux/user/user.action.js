@@ -75,7 +75,7 @@ export const LOGOUT = () => ({
 export const DELETE_USER_ASYNC = (user_id) => {
     return dispatch => {
         dispatch(DELETE_USER_FROM_DATABASE_START())
-        fetch('http://localhost:50000/delete_user', {
+        fetch('/delete_user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -104,7 +104,7 @@ export const DELETE_USER_ASYNC = (user_id) => {
 export const ADD_NEW_USER_ASYNC = (email, name, role, password) => {
     return dispatch => {
         dispatch(ADD_NEW_USER_START())
-        fetch('http://localhost:50000/add_new_user', {
+        fetch('/add_new_user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -136,7 +136,7 @@ export const ADD_NEW_USER_ASYNC = (email, name, role, password) => {
 export const FETCH_USERS_ASYNC = () => {
     return dispatch => {
         dispatch(FETCH_USER_FROM_DATABASE_START)
-        fetch('http://localhost:50000/fetch_users',{
+        fetch('/fetch_users',{
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -153,7 +153,7 @@ export const FETCH_USERS_ASYNC = () => {
 export const FETCH_SINGLEUSER_ASYNC = (id) => {
     return dispatch => {
         dispatch(FETCH_SINGLEUSER_FROM_DATABASE_START)
-        fetch('http://localhost:50000/fetch_single_user',{
+        fetch('/fetch_single_user',{
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -173,7 +173,7 @@ export const FETCH_SINGLEUSER_ASYNC = (id) => {
 export const LOGIN_USER_ASYNC = (data) => {
     return dispatch => {
         dispatch(LOGIN_USER_START())
-        fetch('http://localhost:50000/login_user', {
+        fetch('/login_user', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json" 
@@ -184,7 +184,7 @@ export const LOGIN_USER_ASYNC = (data) => {
         .then(result => {
             if(result !== "Wrong Credentials"){
                 dispatch(LOGIN_USER_SUCCESS(result))
-                dispatch(RedirectTo('/'))
+                dispatch(RedirectTo('/home'))
                 dispatch(ResetRedirect())
             }
             else {

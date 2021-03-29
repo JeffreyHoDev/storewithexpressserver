@@ -33,7 +33,7 @@ export const CANCEL_REQUEST_FAILED = (error) => ({
 export const FULFILL_REQUEST_ASYNC = (itemObj, request_id, collector) => {
     return dispatch => {
         dispatch(FULFILL_REQUEST_START())
-        fetch('http://localhost:50000/fulfill_request', {
+        fetch('/fulfill_request', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -62,7 +62,7 @@ export const FULFILL_REQUEST_ASYNC = (itemObj, request_id, collector) => {
 export const CANCEL_REQUEST_ASYNC = (request_id) => {
     return dispatch => {
         dispatch(CANCEL_REQUEST_START())
-        fetch('http://localhost:50000/cancel_request', {
+        fetch('/cancel_request', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

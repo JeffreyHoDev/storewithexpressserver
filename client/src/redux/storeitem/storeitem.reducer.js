@@ -39,15 +39,10 @@ const StoreItemReducer = (state=INITIAL_STATE, action) => {
                 is_fetching: true
             }
         case "FETCH_ITEM_SUCCESS":
-            const modified_storeItem = action.payload.map(item => {
-                item.display_quantity = item.available_quantity - item.reserved_quantity
-                return item
-            })
-
             return {
                 ...state,
                 is_fetching: false,
-                storeItem: Array.from(modified_storeItem)
+                storeItem: Array.from(action.payload)
             }
         case "FETCH_ITEM_FAILED":
             return {

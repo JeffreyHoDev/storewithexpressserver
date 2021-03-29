@@ -6,10 +6,11 @@ import { Spinner } from 'react-bootstrap'
 
 import { connect } from 'react-redux'
 
+import { useLocation } from 'react-router-dom'
+
 const BasicTable = ({ storeItem, isFetching }) => {
 
-
-
+    const location = useLocation()
     const [datatable, setDatatable] = React.useState({
         columns: [
           {
@@ -24,7 +25,7 @@ const BasicTable = ({ storeItem, isFetching }) => {
           },
           {
             label: 'Available Quantities',
-            field: 'display_quantity',
+            field: 'available_quantity',
             sort: 'asc',
             width: 100,
           },

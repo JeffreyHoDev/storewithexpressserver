@@ -98,7 +98,7 @@ export const SUBMIT_REQUEST_ASYNC = (dataObj) => {
         }
         else {
             dispatch(SUBMIT_REQUEST_START())
-            fetch('http://localhost:50000/submit_request', {
+            fetch('/submit_request', {
                 method: 'POST',
                 headers: {
                     "Content-Type": 'application/json'
@@ -131,7 +131,7 @@ export const SUBMIT_REQUEST_ASYNC = (dataObj) => {
 export const FETCH_REQUEST_LIST_ASYNC = () => {
     return dispatch => {
         dispatch(FETCH_REQUEST_LIST_START())
-        fetch('http://localhost:50000/fetch_request_list', {
+        fetch('/fetch_request_list', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -148,7 +148,7 @@ export const FETCH_REQUEST_LIST_ASYNC = () => {
 export const FETCH_FULFILLED_REQUEST_ASYNC = () => {
     return dispatch => {
         dispatch(FETCH_FULFILLED_REQUEST_START())
-        fetch('http://localhost:50000/fetch_fulfilled_request_list', {
+        fetch('/fetch_fulfilled_request_list', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -165,7 +165,7 @@ export const FETCH_FULFILLED_REQUEST_ASYNC = () => {
 export const FETCH_SINGLEREQUEST_ASYNC = (request_id) => {
     return dispatch => {
         dispatch(FETCH_SINGLEREQUEST_START())
-        fetch('http://localhost:50000/fetch_single_request', {
+        fetch('/fetch_single_request', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -183,7 +183,7 @@ export const FETCH_SINGLEREQUEST_ASYNC = (request_id) => {
 export const FETCH_ONE_FOR_REQUEST_ASYNC = (item_id) => {
     return dispatch => {
         dispatch(FETCH_ONE_FOR_REQUEST_START())
-        fetch('http://localhost:50000/fetch_single_item', {
+        fetch('/fetch_single_item', {
             method: 'POST',
             headers: {
                 'Content-Type': "application/json"
