@@ -17,7 +17,7 @@ const Sidebar = ({ profile, logout, display_sidebar, toggle_sidebar }) => {
                     ?
                     <nav className="sidebar-nav">
                         { display_sidebar ? <div onClick={() => toggle_sidebar()} className="toggle-btn">Toggle</div> : null}
-                        <Link to="/home" className='sidebar-nav-item' onClick={() => toggle_sidebar()}>Home</Link>
+                        <Link to="/" className='sidebar-nav-item' onClick={() => toggle_sidebar()}>Home</Link>
                         <Link to="/user_management" className='sidebar-nav-item' onClick={() => toggle_sidebar()}>User Management</Link>
                         <Link to="/request_list" className='sidebar-nav-item' onClick={() => toggle_sidebar()}>Request List</Link>
                         <Link to="/request_item" className='sidebar-nav-item' onClick={() => toggle_sidebar()}>Request Item</Link>

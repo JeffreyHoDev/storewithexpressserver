@@ -55,11 +55,11 @@ const EditItemPage = ({ itemDetail, fetchDetail, singleItemFetching, updateItem,
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label><span>Current Available Quantities:</span> </Form.Label>
-                                <Form.Control size='sm' type="number" placeholder="Current available quantities" min='0' onChange={(e) => handleNewQuantity(e.target.value)} />
+                                <Form.Control size='sm' type="number" placeholder="Current available quantities" defaultValue={itemDetail[0].available_quantity} min='0' onChange={(e) => handleNewQuantity(e.target.value)} />
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label><span>Current Reserved Quantities:</span> </Form.Label>
-                                <Form.Control size='sm' type="number" placeholder="Current reserved quantities" min='0' onChange={(e) => handleReservedQuantity(e.target.value)} />
+                                <Form.Control size='sm' type="number" placeholder="Current reserved quantities" defaultValue={itemDetail[0].reserved_quantity} min='0' onChange={(e) => handleReservedQuantity(e.target.value)} />
                             </Form.Group>
                             <Form.Group controlId="exampleForm.ControlTextarea1">
                                 <Form.Label>New Notice</Form.Label>

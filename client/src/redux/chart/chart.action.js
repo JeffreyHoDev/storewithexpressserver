@@ -32,7 +32,7 @@ export const FETCH_FOR_LINE_FAILED = (error) => ({
 export const FETCH_FOR_PIE_ASYNC = (start_date, end_date) => {
     return dispatch => {
         dispatch(FETCH_FOR_PIE_START())
-        fetch('/get_pie', {
+        fetch('http://localhost:50000/get_pie', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -51,7 +51,7 @@ export const FETCH_FOR_PIE_ASYNC = (start_date, end_date) => {
 export const FETCH_FOR_LINE_ASYNC = (start_date, end_date) => {
     return dispatch => {
         dispatch(FETCH_FOR_LINE_START())
-        fetch('/get_line', {
+        fetch('http://localhost:50000/get_line', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

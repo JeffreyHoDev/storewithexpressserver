@@ -29,7 +29,7 @@ export const RESET_AUTHORIZED = () => ({
 export const verify_authorized_personAsync = (email, password) => {
     return dispatch => {
         dispatch(VERIFY_START())
-        fetch('/verify', {
+        fetch('http://localhost:50000/verify', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -20,7 +20,7 @@ const knex = require('knex')({
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+ '/client/build/index.html'));
+    res.sendFile(path.join(PUBLIC_URL, 'index.html'));
 });
 
 app.post('/verify', (req,res) => {
@@ -30,6 +30,7 @@ app.post('/verify', (req,res) => {
         'role': 'Admin'
     })
     .then(data => {
+        console.log(data)
         bcrypt.compare(password, data[0].password, function(err, result) {
             if(result){
                 res.json("OK")
@@ -65,6 +66,7 @@ app.post('/login_user', (req,res) => {
     .then(result_fromDB => {
         if(result_fromDB.length !== 0){
             bcrypt.compare(password, result_fromDB[0].password, function(err, result) {
+                console.log(result)
                 if(result){
                     const responseData = {
                         "name": result_fromDB[0]["name"],
@@ -191,9 +193,13 @@ app.post('/fetch_single_request', (req,res) => {
 
 
 app.post('/fulfill_request', (req,res) => {
-    const { request_id, itemObj } = req.body
-    knex('request_list').where('request_id', request_id).update('status', 'Fulfilled')
+    const { request_id, itemObj, collector } = req.body
+    knex('request_list').where('request_id', request_id).update({
+        "status": "Fulfilled",
+        "collector": collector
+    })
     .then(result => {
+        
         knex('request_list').select('item_details').where('request_id', request_id)
         .then(data => {
             const processedData = JSON.parse(data[0]["item_details"])
@@ -202,11 +208,14 @@ app.post('/fulfill_request', (req,res) => {
                 .then(data => {
                     const oldQuantity = parseInt(data[0]['available_quantity'])
                     const newQuantity = oldQuantity - parseInt(item.quantity)
+
                     knex('items_management').where('item_id', item.item_id).update('available_quantity', newQuantity)
                     .then(result => console.log(result))
+
                 })
             })
         })
+
         if(result === 1){
             const fieldsToInsert = itemObj.map(item => ({
                 "item_name": item.name,
@@ -214,9 +223,12 @@ app.post('/fulfill_request', (req,res) => {
                 "fulfilled_date": new Date(),
                 "outbound_quantity": item.quantity
             }))
+        
             knex('item_analysis').insert(fieldsToInsert)
             .then(result => res.json(result))
             .catch(err => res.json(err))
+
+            
         }
         else {
             throw ("Error!")

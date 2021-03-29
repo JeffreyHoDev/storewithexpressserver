@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './fulfill.scss'
+
+import Export from '../../utilities/export'
 
 import { connect } from 'react-redux'
 
@@ -9,8 +11,11 @@ import { useParams, Redirect } from 'react-router-dom'
 import { FETCH_SINGLEREQUEST_ASYNC } from '../../redux/requestitem/requestitem.action'
 import { FULFILL_REQUEST_ASYNC, CANCEL_REQUEST_ASYNC } from '../../redux/fulfillrequest/fulfillrequest.action'
 
+
 const FulfillPage = ({ redirectTo, errorMessage, fetchSingleRequest, isFetching, requestDetail, itemDetail, fulfillRequest, cancelRequest }) => {
     const { request_id } = useParams()
+    const [collected_by, handleCollector] = useState('Unknown')
+
 
     useEffect(() => {
         fetchSingleRequest(request_id)
@@ -41,13 +46,22 @@ const FulfillPage = ({ redirectTo, errorMessage, fetchSingleRequest, isFetching,
                             <h6 name='collect_date'>{requestDetail[0]["collection_date"]}</h6>
                             <label htmlFor='requestor'>Requestor:</label>
                             <h6 name='requestor'>{requestDetail[0]["requestor"]}</h6>
+                            <label htmlFor='collector'>Collector:</label>
+                            <h6 name='requestor'>{requestDetail[0]["collector"]}</h6>
                         </div>
                         {
-                            requestDetail[0].status === "Fulfilled" ? null
+                            requestDetail[0].status === "Fulfilled" ? <Export />
                             :
-                            <div className='action-container'>
-                                <Button variant="success" type="button" onClick={() => fulfillRequest(itemDetail, request_id)}>Complete</Button>
-                                <Button variant="danger" type="button" onClick={() => cancelRequest(request_id)}>Abandon</Button>
+                            <div>
+                                <div className="collected-info">
+                                    <label htmlFor="collected_by_input" className="label_for_collected">Collected By: </label>
+                                    <input type="text" name="collected_by_input" className="input_for_collected" onChange={(e) => handleCollector(e.target.value)}/>
+                                    <span className="text-alert">Please make sure to enter the collector person name before submit</span>
+                                </div>
+                                <div className='action-container'>
+                                    <Button variant="success" type="button" onClick={() => fulfillRequest(itemDetail, request_id, collected_by)}>Complete</Button>
+                                    <Button variant="danger" type="button" onClick={() => cancelRequest(request_id)}>Abandon</Button>
+                                </div>
                             </div>
                         }
                         {
@@ -73,7 +87,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     fetchSingleRequest: (request_id) => dispatch(FETCH_SINGLEREQUEST_ASYNC(request_id)),
-    fulfillRequest: (itemObj, request_id) => dispatch(FULFILL_REQUEST_ASYNC(itemObj, request_id)),
+    fulfillRequest: (itemObj, request_id, collector) => dispatch(FULFILL_REQUEST_ASYNC(itemObj, request_id, collector)),
     cancelRequest: (request_id) => dispatch(CANCEL_REQUEST_ASYNC(request_id))
 })
 
