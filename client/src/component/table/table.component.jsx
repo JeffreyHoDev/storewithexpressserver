@@ -25,7 +25,7 @@ const BasicTable = ({ storeItem, isFetching }) => {
           },
           {
             label: 'Available Quantities',
-            field: 'available_quantity',
+            field: 'display_quantity',
             sort: 'asc',
             width: 100,
           },
