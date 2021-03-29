@@ -12,7 +12,7 @@ const Export = ({ requestDetail }) => {
     return (<div>
       <div className="mb5">
         {/* <button onClick={this.printDocument}>Print</button> */}
-          <PDFDownloadLink document={<MyDocument requestDetail={requestDetail}/>} fileName="somename.pdf">
+          <PDFDownloadLink document={<MyDocument requestDetail={requestDetail}/>} fileName={`RID_${requestDetail[0]["request_id"]}.pdf`}>
             {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Print')}
           </PDFDownloadLink>
       </div>
