@@ -87,6 +87,11 @@ const StoreItemReducer = (state=INITIAL_STATE, action) => {
                 singleItem_is_updating: false,
                 errorMessage: action.payload
             }
+        case "ADDING_ITEM":
+            return {
+                ...state,
+                is_adding: !state.is_adding
+            }
         default:
             return state
     }

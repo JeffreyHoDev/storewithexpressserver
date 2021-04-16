@@ -5,7 +5,7 @@ import './addItem.scss'
 import { connect } from 'react-redux'
 import { DISPLAY_ADDITEM_COMPONENT, ADD_NEW_ITEM_ASYNC } from '../../redux/storeitem/storeitem.action'
 
-const AddItem = ({displayAddItem,errorMessage, toggleAddItem, addNewItem}) => {
+const AddItem = ({displayAddItem,errorMessage, toggleAddItem, addNewItem, is_adding}) => {
 
     const [item_name, handleItemName] = useState('')
     const [brand, handleBrand] = useState('')
@@ -27,7 +27,7 @@ const AddItem = ({displayAddItem,errorMessage, toggleAddItem, addNewItem}) => {
                 <Form>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Item Name:</Form.Label>
-                        <Form.Control type="text" placeholder="Enter item name" onChange={(e) => handleItemName(e.target.value)}/>
+                        <Form.Control type="text" placeholder="Enter item name" onChange={(e) => handleItemName(e.target.value)} />
                     </Form.Group>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Brand:</Form.Label>
@@ -43,16 +43,22 @@ const AddItem = ({displayAddItem,errorMessage, toggleAddItem, addNewItem}) => {
                     </Form.Group>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Notice</Form.Label>
-                        <Form.Control as="textarea" rows={4} placeholder="Notification message to everyone about the item..." onChange={(e) => handleNotice(e.target.value)}/>
+                        <Form.Control as="textarea" rows={4} placeholder="Notification message to everyone about the item..." onChange={(e) => handleNotice(e.target.value)} />
                     </Form.Group>
                     <Button className="addItem-submit-btn" variant="success" type="button" 
-                    onClick={() => addNewItem({
-                        "item_name": item_name,
-                        "brand": brand,
-                        "available_quantity": available_quantity,
-                        "reserved_quantity": reserved_quantity,
-                        "notice": notice
-                    })}
+                    onClick={() => {
+                        addNewItem({
+                            "item_name": item_name,
+                            "brand": brand,
+                            "available_quantity": available_quantity,
+                            "reserved_quantity": reserved_quantity,
+                            "notice": notice
+                        })
+                        handleBrand("")
+                        handleReservedQuantity(0)
+                        handleNotice("")
+                    }}   
+                    disabled={is_adding}
                     >
                         Submit
                     </Button>
@@ -68,7 +74,8 @@ const AddItem = ({displayAddItem,errorMessage, toggleAddItem, addNewItem}) => {
 
 const mapStateToProps = (state) => ({
     displayAddItem: state.StoreItemReducer.displayAddItem,
-    errorMessage: state.StoreItemReducer.errorMessage
+    errorMessage: state.StoreItemReducer.errorMessage,
+    is_adding: state.StoreItemReducer.is_adding
 })
 
 const mapDispatchToProps = dispatch => ({

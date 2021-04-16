@@ -58,10 +58,15 @@ export const UPDATE_SINGLEITEM_FAILED = (error) => ({
     payload: error
 })
 
+export const ADDING_ITEM = () => ({
+    type: STORE_ITEM_CONSTANT.ADDING_ITEM
+})
+
 // START - ASYNC action handler
 
 export const ADD_NEW_ITEM_ASYNC = (dataObj) => {
     return dispatch => {
+        dispatch(ADDING_ITEM())
         dispatch(ADD_NEW_ITEM_START())
         fetch('/add_new_item', {
             method: 'POST',
@@ -73,6 +78,7 @@ export const ADD_NEW_ITEM_ASYNC = (dataObj) => {
         .then(response => response.json())
         .then(data => {
             if(data.status === "OK"){
+                dispatch(ADDING_ITEM())
                 dispatch(ADD_NEW_ITEM_SUCCESS())
                 dispatch(DISPLAY_ADDITEM_COMPONENT)
                 dispatch(RedirectTo('reload'))
