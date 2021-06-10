@@ -35,7 +35,9 @@ const DeleteUser = ({ singleUser, fetchUser, authorized, capturedID, resetAuthor
                         <Form.Label>Role</Form.Label>
                         <Form.Control type="text" value={singleUser[0].role} readOnly/>
                     </Form.Group>
-                    <Button variant="danger" type="button" onClick={() => deleteUserAsync(capturedID)}>
+                    <Button variant="danger" type="button" onClick={() => deleteUserAsync(capturedID)}
+                    disabled={isDeleting}
+                    >
                         Delete
                         {isDeleting ? <Spinner animation="border" variant="success" />: null}
                     </Button>

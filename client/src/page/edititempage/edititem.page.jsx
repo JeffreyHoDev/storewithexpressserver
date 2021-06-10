@@ -8,7 +8,7 @@ import { useParams, Redirect } from 'react-router-dom'
 
 import { FETCH_SINGLEITEM_ASYNC, UPDATE_SINGLEITEM_ASYNC } from '../../redux/storeitem/storeitem.action'
 
-const EditItemPage = ({ itemDetail, fetchDetail, singleItemFetching, updateItem, redirectTo }) => {
+const EditItemPage = ({ itemDetail, fetchDetail, singleItemFetching, updateItem, redirectTo, singleItem_is_updating }) => {
     const { item_id } = useParams()
 
     const [new_quantity, handleNewQuantity] = useState(0)
@@ -66,6 +66,7 @@ const EditItemPage = ({ itemDetail, fetchDetail, singleItemFetching, updateItem,
                                 <Form.Control as="textarea" rows={4} onChange={(e) => handleNotice(e.target.value) }/>
                             </Form.Group>
                             <Button variant="success" type="button" 
+                            disabled={singleItem_is_updating}
                             onClick={() => updateItem({
                                     "item_id": item_id,
                                     "available_quantity": new_quantity,
@@ -88,7 +89,8 @@ const EditItemPage = ({ itemDetail, fetchDetail, singleItemFetching, updateItem,
 const mapStateToProps = state => ({
     itemDetail: state.StoreItemReducer.singleItem,
     singleItemFetching: state.StoreItemReducer.singleItem_is_fetching,
-    redirectTo: state.UrlReducer.redirectLink
+    redirectTo: state.UrlReducer.redirectLink,
+    singleItem_is_updating: state.StoreItemReducer.singleItem_is_updating
 })
 
 const mapDispatchToProps = dispatch => ({

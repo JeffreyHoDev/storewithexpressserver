@@ -12,7 +12,7 @@ import { FETCH_SINGLEREQUEST_ASYNC } from '../../redux/requestitem/requestitem.a
 import { FULFILL_REQUEST_ASYNC, CANCEL_REQUEST_ASYNC } from '../../redux/fulfillrequest/fulfillrequest.action'
 
 
-const FulfillPage = ({ redirectTo, errorMessage, fetchSingleRequest, isFetching, requestDetail, itemDetail, fulfillRequest, cancelRequest }) => {
+const FulfillPage = ({ redirectTo, errorMessage, fetchSingleRequest, isFetching, requestDetail, itemDetail, fulfillRequest, cancelRequest, is_submitting, is_cancelling }) => {
     const { request_id } = useParams()
     const [collected_by, handleCollector] = useState('Unknown')
 
@@ -59,8 +59,8 @@ const FulfillPage = ({ redirectTo, errorMessage, fetchSingleRequest, isFetching,
                                     <span className="text-alert">Please make sure to enter the collector person name before submit</span>
                                 </div>
                                 <div className='action-container'>
-                                    <Button variant="success" type="button" onClick={() => fulfillRequest(itemDetail, request_id, collected_by)}>Complete</Button>
-                                    <Button variant="danger" type="button" onClick={() => cancelRequest(request_id)}>Abandon</Button>
+                                    <Button variant="success" type="button" onClick={() => fulfillRequest(itemDetail, request_id, collected_by)} disabled={is_submitting === true||is_cancelling === true? true: false}>Complete</Button>
+                                    <Button variant="danger" type="button" onClick={() => cancelRequest(request_id)} disabled={is_submitting === true||is_cancelling === true? true: false}>Abandon</Button>
                                 </div>
                             </div>
                         }
@@ -82,7 +82,9 @@ const mapStateToProps = state => ({
     requestDetail: state.RequestItemReducer.singleRequest,
     itemDetail: state.RequestItemReducer.request_items_detail,
     redirectTo: state.UrlReducer.redirectLink,
-    errorMessage: state.FulfillRequestReducer.errorMessage
+    errorMessage: state.FulfillRequestReducer.errorMessage,
+    is_submitting: state.FulfillRequestReducer.is_submitting,
+    is_cancelling: state.FulfillRequestReducer.is_cancelling
 })
 
 const mapDispatchToProps = dispatch => ({

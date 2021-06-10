@@ -42,7 +42,9 @@ const AddUser = ({authorized, capturedID, resetAuthorized, addUser, errorMessage
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Password" required onChange={(e) => handlePassword(e.target.value)}/>
                             </Form.Group>
-                            <Button variant="primary" type="button" onClick={() => addUser(new_email, new_name, new_role, new_password)}>
+                            <Button variant="primary" type="button" 
+                            disabled={isAdding}
+                            onClick={() => addUser(new_email, new_name, new_role, new_password)}>
                                 Add User 
                                 {isAdding ? <Spinner animation="border" variant="success" /> : null}
                             </Button>
